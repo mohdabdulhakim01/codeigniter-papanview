@@ -8,7 +8,7 @@ Are you searching for simple and flexible view template for Codeigniter similar 
 - Sure I've tried twigs,smarty and others but at some point my coding implementation just don't work with this template engine. 
 - I need native php script  solution without hassle of installation and capable to support any php version starting PHP v5 and onward. 
 - Some template i mentioned were consider abandoning older support so low hope for this template toolkit. 
-- So PapanView was born to aid my project.
+- So PapanView was created to aid my project.
 
 It support most of the blade syntax such as :
 ```
