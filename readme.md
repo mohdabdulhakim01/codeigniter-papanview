@@ -1,70 +1,110 @@
-###################
-What is CodeIgniter
-###################
 
-CodeIgniter is an Application Development Framework - a toolkit - for people
-who build web sites using PHP. Its goal is to enable you to develop projects
-much faster than you could if you were writing code from scratch, by providing
-a rich set of libraries for commonly needed tasks, as well as a simple
-interface and logical structure to access these libraries. CodeIgniter lets
-you creatively focus on your project by minimizing the amount of code needed
-for a given task.
+# PapanView for Codeigniter v3.10
 
-*******************
-Release Information
-*******************
+Are you searching for simple and flexible view template for Codeigniter similar to Laravel Blade View ?. This is the right tool for it. It have 70% similar writing method of blade view and have minimal component based mimic with it.
 
-This repo contains in-development code for future releases. To download the
-latest stable release please visit the `CodeIgniter Downloads
-<https://codeigniter.com/download>`_ page.
+# Reason I develop this tool:
+- I was in position where i need to develop using codeigniter only and no laravel and working on older version of codeigniter was quite pain without any view template tool. 
+- Sure I've tried twigs,smarty and others but at some point my coding implementation just don't work with this template engine. 
+- I need native php script  solution without hassle of installation and capable to support any php version starting PHP v5 and onward. 
+- Some template i mentioned were consider abandoning older support so low hope for this template toolkit. 
+- So PapanView was born to aid my project.
 
-**************************
-Changelog and New Features
-**************************
+It support most of the blade syntax such as :
+```
+- @for
+- @if
+- @foreach
+- @while
+- @elseif
+- @php
+```
+But most syntax must end with **::** to make sure engine able to read it properly such as
+```
+	@for($x = 1;$x>$totalY;$x++)::
+	@endfor
+	
+	@if($x == $y)::
+	@elseif($x == $z)::
+	@endif
+	
+	@foreach($x as $y)::
+	@endforeach
+	
+	@while($x > 0)::
+	@endwhile
+	
+	{{$variable}}
+	{!! $variable !!}  **--> doesn't return 0 or 1 in view render**
+```
 
-You can find a list of all changes for each release in the `user
-guide change log <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/changelog.rst>`_.
+it also have syntax to autoconvert array to object when looping for who is love doing $object->data 
+```
+@object($objectName):;
 
-*******************
-Server Requirements
-*******************
+```
 
-PHP version 5.6 or newer is recommended.
+It also support pagination and some basic component.
+It also shipped out of the box with 
+- Bootstrap Material UI CDN v5
+- Fontawesome v4
+- JQuery v3
+- Google Font Icon
+- HandsonTable v8.3.2
+- Popper JS
 
-It should work on 5.3.7 as well, but we strongly advise you NOT to run
-such old versions of PHP, because of potential security and performance
-issues, as well as missing features.
+# Component 
+- I also try to mimic the view component style like Blade but not fully creatable by me. But basic component pulling like **<x-component/>** will work just fine
 
-************
-Installation
-************
+```
+<x-header/>
+<x-footer/>
+<x-smart_box/> -- generate modal and render component from other page
+<x-alert_box/> -- fancy modal alert box
+<x-confirm_box/> -- fancy confirm box
+```
 
-Please see the `installation section <https://codeigniter.com/user_guide/installation/index.html>`_
-of the CodeIgniter User Guide.
+# Component Limitation
+- No multiple prop and name. but you can use :
+``` 
+<x-component prop="Whatever"/>
+``` 
 
-*******
-License
-*******
+# Running PapanView
+- Inside your controller. add **html_base&&,**xcomponent**, and **paginator** helper file
+```
+$this->load->helper('html_base');
+$this->load->helper('xcomponent');
+$this->load->helper('paginator');
+```
+- Since we still comply to codeigniter view rule. we need to use **$data** variable to inject the variable to our view file. we just need to encapsulate the **$data** variable into other variable before inserting to parameter.
+### Note
+- Filename must end with .papan.php . And when declaring in controller . the view file doesn't need to written with the extension name.
+```
+public function index(){
+    $data['name'] = 'Hakim';
+    $papan_data = $data;
+    papanView('view_path/filename',$papan_data);
+}
+```
 
-Please see the `license
-agreement <https://github.com/bcit-ci/CodeIgniter/blob/develop/user_guide_src/source/license.rst>`_.
+#Note
+- Some bug are unreadable since most of the view bug not return correctly. and for database model error doesn't logged at render so this might make you feel hard to backtrack the errors. 
+- But once you use to it, it should be no problem.
 
-*********
-Resources
-*********
+## Pros 
+- Super Lightweight - less than 1mb ( the Papanview Script File).
+- Come with usual development tool such as Bootstrap/Jquery/Fontawesome.
+- Come with usual modal tool such as alertbox,confirmbox,and smartbox.
+- No setup needed
+- Build with pagination similar with Laravel Pagination
+- Come with minimal component based
+- Compatible with older PHP version.
+- Feel almost 70% like Laravel BladeView
 
--  `User Guide <https://codeigniter.com/docs>`_
--  `Language File Translations <https://github.com/bcit-ci/codeigniter3-translations>`_
--  `Community Forums <http://forum.codeigniter.com/>`_
--  `Community Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_
--  `Community Slack Channel <https://codeigniterchat.slack.com>`_
+## Cons 
+- Bugs hard to debug since error is not correctly informed.
+- Might prone to xss injection
+- Component based functionality doesn't support very well.
+- no @switch-case syntax
 
-Report security issues to our `Security Panel <mailto:security@codeigniter.com>`_
-or via our `page on HackerOne <https://hackerone.com/codeigniter>`_, thank you.
-
-***************
-Acknowledgement
-***************
-
-The CodeIgniter team would like to thank EllisLab, all the
-contributors to the CodeIgniter project and you, the CodeIgniter user.
