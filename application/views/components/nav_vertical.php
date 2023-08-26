@@ -6,56 +6,18 @@ $navData = [
         "name" => "Statistik",
         "icon" => "fas fa-pie-chart text-danger",
         "childs" => [
-            ["url" => base_url() . 'pentadbir/Statistik', "name" => "Statistik Utama", "icon" => "fa fa-arrow-right"],
+            ["url" => base_url() . 'admin/Statistik', "name" => "Statistik Utama", "icon" => "fa fa-arrow-right"],
         ]
     ],
+  
+   
     [
         "name" => "Program",
-        "icon" => "fas fa-copy text-success",
-        "childs" => [
-            ["url" => base_url() . 'pentadbir/Program/newprogram', "name" => "Daftar Program", "icon" => "fa fa-arrow-right"],
-            ["url" => base_url() . 'pentadbir/Program', "name" => "Senarai Program", "icon" => "fa fa-arrow-right"]
-        ]
-    ],
-    [
-        "name" => "Responden",
-        "icon" => "fas fa-users text-primary",
-        "childs" => [
-            ["url" => base_url() . 'pentadbir/SenaraiResponden', "name" => "Senarai Responden", "icon" => "fa fa-arrow-right"],
-        ]
-    ],
-    [
-        "name" => "Pengurus Ujian",
         "icon" => "text-secondary",
         "iconCustom" => "<span class='material-icons'>article</span>",
-        "url" => base_url() . 'pentadbir/ExamManager'
-    ],
-    [
-        "name" => "Tetapan",
-        "icon" => "fas fa-cog text-dark",
-        "childs" => [
-            ["url" => base_url() . 'pentadbir/Settings/urusAgensi', "name" => "Urus Agensi", "icon" => "fa fa-arrow-right"],
-            ["url" => base_url() . 'pentadbir/Settings/urusTujuan', "name" => "Urus Tujuan", "icon" => "fa fa-arrow-right"],
-            ["url" => base_url() . 'pentadbir/UrusStaff', "name" => "Urus Staf", "icon" => "fa fa-arrow-right",'show'=>(isSAdmin() ? '' : 'd-none')]
-            ,
-            ["url" => base_url() . 'pentadbir/Settings/developerBox', "name" => "Developer Box", "icon" => "fa fa-arrow-right"],
-        ]
+        "url" => base_url() . 'admin/Program'
     ]
-    
    
-    // [
-    //     "name" => "Laporan",
-    //     "icon" => "fas fa-chart-bar",
-    //     "childs" => [
-    //         ["url" => base_url() . 'pentadbir/LaporanIndividu', "name" => "Individu", "icon" => "fa fa-arrow-right"]
-    //     ]
-    // ],
-    // [
-    //     "name" => "Logout",
-    //     "icon" => "fas fa-power-off",
-    //     "action" => "logoutPrompt()",
-    //     "class"=> "border border-4 border-danger rounded "
-    // ]
 ];
 
 
@@ -119,7 +81,7 @@ $navData = [
 
     function logoutPrompt() {
         const title = 'Log Keluar Sistem';
-        let action = " location.href = base_url_ + 'pentadbir/Verify/logout';";
+        let action = " location.href = base_url_ + 'admin/Verify/logout';";
         let actionTitle = 'Log Keluar&nbsp;<span class="fas fa-power-off"></span>';
         let btnColor = 'btn-danger';
         confirmBox(title, action, actionTitle, btnColor, "Anda pasti untuk log keluar sistem ? ");

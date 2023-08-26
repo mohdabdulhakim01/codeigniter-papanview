@@ -4,14 +4,12 @@
 function linkbar($current_url)
 {
     $links = explode('/', $current_url);
-    // return json_encode($links);
     $home = $links[3];
     unset($links[0]);
     unset($links[1]);
     unset($links[2]);
     unset($links[3]);
     unset($links[4]);
-    // return json_encode($links);
 
     $linkData = linkBuilder($links);
     return <<<EOF
@@ -23,9 +21,6 @@ function linkbar($current_url)
               
             </ol>
             </div>
-
-            
-           
 EOF;
 }
 function linkBuilder($linkArr)
@@ -361,20 +356,4 @@ function papanPaginate($ctrlPath,$dataTotalRows,$rowsPerPage)
     $CI->pagination->total_page = ($is_more_pg) ? round($total_pg) + 1 : $total_pg;
   
     return ['links'=>$CI->pagination->create_links(),'total'=>$total_rows,'linkbar'=>linkbar(current_url()),'totalPage'=> $total_rows,'current_page'=>$current_page];
-}
-
-function decodeFName($filename){
-    $filename = str_replace(':slashf:','/',$filename);
-    $filename = str_replace(':slashb:','\\',$filename);
-    return $filename;
-}
-
-function includeCalcPattern($calcPatternFilePath){
-    $calcPatternPath = APPPATH.'/helpers/calc_pattern/'.$calcPatternFilePath.'.php';
-    include_once($calcPatternPath);
-}
-function isSAdmin(){
-    $CI = &get_instance();
-    $CI->load->library('session');
-    return $CI->session->userdata('sa_mode') ? : '';
 }
