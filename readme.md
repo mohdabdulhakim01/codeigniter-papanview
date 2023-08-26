@@ -71,7 +71,7 @@ It also shipped out of the box with
 ``` 
 
 # Running PapanView
-- Inside your controller. add **html_base&&,**xcomponent**, and **paginator** helper file
+- Inside your controller. add **html_base**, **xcomponent**, and **paginator** helper file
 ```
 $this->load->helper('html_base');
 $this->load->helper('xcomponent');
