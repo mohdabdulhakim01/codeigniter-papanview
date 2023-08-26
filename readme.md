@@ -19,7 +19,7 @@ It support most of the blade syntax such as :
 - @elseif
 - @php
 ```
-But most syntax must end with **::** to make sure engine able to read it properly such as
+But most syntax must end with **::** to make sure the parser able to read it properly such as
 ```
 	@for($x = 1;$x>$totalY;$x++)::
 	@endfor
